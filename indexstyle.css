@@ -1,11 +1,21 @@
 /* star animation */
+
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center; 
+}
+
+:root {
+    --star-size: clamp(25px, 10vw, 65px);
+  }
+
 .star {
-    width: 60px;
-    height: 60px;
-    background-color: rgb(253, 253, 53);
+    width: var(--star-size);
+    height: var(--star-size);
+    background-color: rgb(255, 255, 108);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     position: absolute;
-    animation: bounce 17s infinite linear, rotate 9s infinite;
+    animation: bounce 17s infinite linear, hueshift 10s infinite linear;
 }
 
 /* traveling animation for the star */
@@ -17,16 +27,16 @@
     }
     25% {
         top: 0;
-        left: calc(100% - 60px); /* move to top right of screen, accounting for star width */
+        left: calc(100% - var(--star-size)); /* move to top right of screen, accounting for star width */
         transform: translate(0, 0) rotate(90deg);
     }
     50% {
-        top: calc(100% - 60px); /* move to bottom right */
-        left: calc(100% - 60px);
+        top: calc(100% - var(--star-size)); /* move to bottom right */
+        left: calc(100% - var(--star-size));
         transform: translate(0, 0) rotate(180deg);
     }
     75% {
-        top: calc(100% - 60px); /* move to bottom left */
+        top: calc(100% - var(--star-size)); /* move to bottom left */
         left: 0;
         transform: translate(0, 0) rotate(270deg);
     }
@@ -35,4 +45,13 @@
         left: 0;
         transform: translate(0, 0) rotate(360deg);
     }
+}
+
+@keyframes hueshift {
+    from {
+        filter: hue-rotate(0deg);
+    }
+    to {
+        filter: hue-rotate(360deg);
+      }
 }
